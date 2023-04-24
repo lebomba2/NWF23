@@ -70,7 +70,7 @@ public class CustomerController : Controller
         // Edit customer info
         _dataContext.EditCustomer(customer);
         return RedirectToAction("Index", "Home");
-    }    
+    }
     private void AddErrorsFromResult(IdentityResult result)
     {
         foreach (IdentityError error in result.Errors)

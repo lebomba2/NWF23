@@ -9,4 +9,5 @@ public class ProductController : Controller
   public IActionResult Index(int id){
     ViewBag.id = id;
     return View(_dataContext.Categories.OrderBy(c => c.CategoryName));
-  }}
+  }
+}

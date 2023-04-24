@@ -12,6 +12,6 @@ public class Customer
     public string Country { get; set; }
     public string Phone { get; set; }
     public string Fax { get; set; }
-    [Required]    
+    [Required]
     public string Email { get; set; }
 }
