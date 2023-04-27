@@ -12,13 +12,19 @@ public class CustomerController : Controller
         _dataContext = db;
         _userManager = usrMgr;
     }
-    public IActionResult Register() => View();
+
+    public IActionResult Register()
+    {
+        var model = new NewCustomer();
+        return View(model);
+    }
+
     [HttpPost, ValidateAntiForgeryToken]
-    public async System.Threading.Tasks.Task<IActionResult> Register(CustomerWithPassword customerWithPassword)
+    public async System.Threading.Tasks.Task<IActionResult> Register(NewCustomer customer)
     {
         if (ModelState.IsValid)
         {
-            Customer customer = customerWithPassword.Customer;
+            //Customer customer = customerWithPassword;
             if (_dataContext.Customers.Any(c => c.CompanyName == customer.CompanyName))
             {
                 ModelState.AddModelError("", "Company Name must be unique");
@@ -34,7 +40,7 @@ public class CustomerController : Controller
                         UserName = customer.Email
                     };
                     // Add user to Identity DB
-                    IdentityResult result = await _userManager.CreateAsync(user, customerWithPassword.Password);
+                    IdentityResult result = await _userManager.CreateAsync(user, customer.Password);
                     if (!result.Succeeded)
                     {
                         AddErrorsFromResult(result);
@@ -53,7 +59,12 @@ public class CustomerController : Controller
                         else
                         {
                             // Create customer (Northwind)
-                            _dataContext.AddCustomer(customer);
+                            Customer cust = new Customer
+                            {
+                                CompanyName = customer.CompanyName,
+                                Email = customer.Email,
+                            };
+                            _dataContext.AddCustomer(cust);
                             return RedirectToAction("Index", "Home");
                         }
                     }
@@ -62,8 +73,10 @@ public class CustomerController : Controller
         }
         return View();
     }
+
     [Authorize(Roles = "northwind-customer")]
     public IActionResult Account() => View(_dataContext.Customers.FirstOrDefault(c => c.Email == User.Identity.Name));
+    
     [Authorize(Roles = "northwind-customer"), HttpPost, ValidateAntiForgeryToken]
     public IActionResult Account(Customer customer)
     {
@@ -71,6 +84,7 @@ public class CustomerController : Controller
         _dataContext.EditCustomer(customer);
         return RedirectToAction("Index", "Home");
     }
+
     private void AddErrorsFromResult(IdentityResult result)
     {
         foreach (IdentityError error in result.Errors)
