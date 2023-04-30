@@ -1,5 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model IEnumerable<Discount>
+
+<div class="bg-primary m-1 p-1 text-white">
+    <h4>Discount Listing</h4>
+</div>
+
+@if (Model.Count() == 0)
+
+{
+    <p>There are no Discountss</p>
 }
+
+else
+
+{
+    <ul>
+        <!--displays each Discount  -->
+        @foreach (Discount discount in Model)
+
+        {
+            <li>
+                <!-- this link makes the discount  link clickable and it will lead to the discounts page  -->
+                <!-- this makes the delete link that will delete the discount  -->
+                <a asp-a                ction="DeleteDiscount" asp-route-id="@discount.DiscountId">Delete</a>
+            </li>
+        }
+    </ul>
+}
+<hr />
+
+
+
+

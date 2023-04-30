@@ -9,15 +9,15 @@ public class CustomerController : Controller
     private UserManager<AppUser> _userManager;
     public CustomerController(DataContext db, UserManager<AppUser> usrMgr)
     {
-        _dataContext = db;
+            _dataContext = db;
         _userManager = usrMgr;
     }
 
     public IActionResult Register()
     {
-        var model = new NewCustomer();
-        return View(model);
-    }
+                            var model = new NewCustomer();
+                            return View(model);
+            }
 
     [HttpPost, ValidateAntiForgeryToken]
     public async System.Threading.Tasks.Task<IActionResult> Register(NewCustomer customer)

@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using System.Linq;
+
+
 
 namespace Northwind.Controllers
 {
@@ -15,11 +18,7 @@ namespace Northwind.Controllers
             roleManager = roleMgr;
         }
 
-        public IActionResult Index()
-        {
-            //TODO return a model of discounts
-            return View();
-        }
+        public IActionResult Index() => View(_dataContext.Discounts);
 
         //TODO use auth decorator and write logic for add discount button
         [HttpPost]
