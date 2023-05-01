@@ -20,6 +20,11 @@ public class DataContext : DbContext
         Discounts.Add(discount);
         SaveChanges();
     }
+    public void DeleteDiscount(Discount discount)
+    {
+        this.Remove(discount);
+        this.SaveChanges();
+    }
     public void EditCustomer(Customer customer)
   {
     var customerToUpdate = Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);

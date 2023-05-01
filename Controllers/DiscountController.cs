@@ -30,28 +30,14 @@ namespace Northwind.Controllers
         public ViewResult Create() => View();
 
         //TODO write logic for delete discount button
-        [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        // this method accepts an argument to delete a blog and redirects to the home page
+        public IActionResult DeleteDiscount(int id)
         {
-            var role = await roleManager.FindByIdAsync(id);
-            if (role !=  null)
-            {
-                IdentityResult result = await roleManager.DeleteAsync(role);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    AddErrorsFromResult(result);
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "No role found");
-            }
-            return View("Index", roleManager.Roles);
+           _dataContext.DeleteDiscount(_dataContext.Discounts.FirstOrDefault(b => b.DiscountId == id));
+            return RedirectToAction("Index");
         }
+     
+     
 
         //TODO write logic for edit discount button
         [HttpPost]
