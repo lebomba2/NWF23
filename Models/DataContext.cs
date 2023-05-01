@@ -15,7 +15,12 @@ public class DataContext : DbContext
     Customers.Add(customer);
     SaveChanges();
   }
-  public void EditCustomer(Customer customer)
+    public void AddDiscount(Discount discount)
+    {
+        Discounts.Add(discount);
+        SaveChanges();
+    }
+    public void EditCustomer(Customer customer)
   {
     var customerToUpdate = Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
     customerToUpdate.Address = customer.Address;

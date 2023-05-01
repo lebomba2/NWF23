@@ -22,22 +22,12 @@ namespace Northwind.Controllers
 
         //TODO use auth decorator and write logic for add discount button
         [HttpPost]
-        public async Task<IActionResult> Create([Required] string name)
+        public async Task<IActionResult> Create(Discount discount)
         {
-            if (ModelState.IsValid)
-            {
-                IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    AddErrorsFromResult(result);
-                }
-            }
-            return View(name);
-        }   
+            _dataContext.AddDiscount(discount);
+            return RedirectToAction("Index");
+        }
+        public ViewResult Create() => View();
 
         //TODO write logic for delete discount button
         [HttpPost]
