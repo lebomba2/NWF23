@@ -18,15 +18,25 @@ else
         @foreach (Discount discount in Model)
 
         {
+            <td>
+                <tr>@discount.Title @discount.Code 
+                
+           
+           
+                     
             <li>
                 <!-- this link makes the discount  link clickable and it will lead to the discounts page  -->
                 <!-- this makes the delete link that will delete the discount  -->
-                <a asp-a                ction="DeleteDiscount" asp-route-id="@discount.DiscountId">Delete</a>
+                <a asp-action="DeleteDiscount" asp-route-id="@discount.DiscountId">Delete</a>     <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@discount.DiscountId">Edit</a>
+
             </li>
+            </tr>
+            </td>
         }
     </ul>
+
 }
-<hr />
+<a class="btn btn-outline-primary" asp-action="Create">Create</a>
 
 
 
