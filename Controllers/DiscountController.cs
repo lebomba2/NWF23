@@ -27,9 +27,13 @@ namespace Northwind.Controllers
             _dataContext.AddDiscount(discount);
             return RedirectToAction("Index");
         }
+
+        //TO DO add appropriate decorators for the method
+        //TO DO add logic for create
         public ViewResult Create() => View();
 
-        //TODO write logic for delete discount button
+        //TO DO write logic for delete discount button
+        //TO DO add appropriate decorators for the method
         // this method accepts an argument to delete a blog and redirects to the home page
         public IActionResult DeleteDiscount(int id)
         {
@@ -39,16 +43,20 @@ namespace Northwind.Controllers
      
      
 
-        //TODO write logic for edit discount button
-        [HttpPost]
-        public async Task<IActionResult> Edit(string id)
+        //TO DO write logic for edit discount button
+        //TO DO add appropriate decorators for the method
+        public async Task<IActionResult> Edit(int id)
         {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            List<AppUser> members = new List<AppUser>();
-            List<AppUser> nonMembers = new List<AppUser>();
-
-            // add edit logic here
-            return null;
+            //AppUser user = await userManager.FindByIdAsync(id);
+            //if (user != null)
+            //{
+            //    return View(user);
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index");
+            //}
+            return null; //TO DO delete this return statement when logic is written
         }
 
 

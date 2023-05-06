@@ -25,18 +25,18 @@ public class DataContext : DbContext
         this.Remove(discount);
         this.SaveChanges();
     }
-    public void EditCustomer(Customer customer)
-  {
-    var customerToUpdate = Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
-    customerToUpdate.Address = customer.Address;
-    customerToUpdate.City = customer.City;
-    customerToUpdate.Region = customer.Region;
-    customerToUpdate.PostalCode = customer.PostalCode;
-    customerToUpdate.Country = customer.Country;
-    customerToUpdate.Phone = customer.Phone;
-    customerToUpdate.Fax = customer.Fax;
-    SaveChanges();
-  }
+        public void EditCustomer(Customer customer)
+      {
+        var customerToUpdate = Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+        customerToUpdate.Address = customer.Address;
+        customerToUpdate.City = customer.City;
+        customerToUpdate.Region = customer.Region;
+        customerToUpdate.PostalCode = customer.PostalCode;
+        customerToUpdate.Country = customer.Country;
+        customerToUpdate.Phone = customer.Phone;
+        customerToUpdate.Fax = customer.Fax;
+        SaveChanges();
+      }
   public CartItem AddToCart(CartItemJSON cartItemJSON)
   {
     int CustomerId = Customers.FirstOrDefault(c => c.Email == cartItemJSON.email).CustomerId;
@@ -64,4 +64,17 @@ public class DataContext : DbContext
     cartItem.Product = Products.Find(cartItem.ProductId);
     return cartItem;
   }
+
+    public void EditDiscount(Discount discount)
+    {
+        var discountToUpdate = Discounts.FirstOrDefault(d => d.DiscountId == discount.DiscountId);
+        discountToUpdate.Title = discount.Title;
+        discountToUpdate.Code = discount.Code;
+        discountToUpdate.StartTime = discount.StartTime;
+        discountToUpdate.EndTime = discount.EndTime;
+
+        
+        SaveChanges()
+            ;
+    }
 }

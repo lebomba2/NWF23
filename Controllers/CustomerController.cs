@@ -16,7 +16,7 @@ public class CustomerController : Controller
     public IActionResult Register()
     {
                             var model = new NewCustomer();
-                            return View(model);
+                                return View(model);
             }
 
     [HttpPost, ValidateAntiForgeryToken]
