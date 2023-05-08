@@ -44,8 +44,17 @@ namespace Northwind.Controllers
 
 
         public IActionResult Edit(int id) => View(_dataContext.Discounts.FirstOrDefault(d => d.DiscountId == id));
+        
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(Discount discount)
+        {
+            return View();
+            // Edit customer info
+            // _dataContext.EditDiscount(discount);
+            //return RedirectToAction("Index", "Discount");
+        }
 
-            
+
         //[Authorize(Roles = "northwind-customer"), HttpPost, ValidateAntiForgeryToken]
         //[HttpPost, ValidateAntiForgeryToken]
         //public IActionResult Edit(Discount discount)
@@ -59,6 +68,7 @@ namespace Northwind.Controllers
 
         //TO DO write logic for edit discount button
         //[HttpPost]
+
         //public async Task<IActionResult> Edit(int id)
         // {
         //AppUser user = await userManager.FindByIdAsync(id);
