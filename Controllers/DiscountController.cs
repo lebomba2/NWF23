@@ -22,7 +22,7 @@ namespace Northwind.Controllers
 
         //TODO use auth decorator and write logic for add discount button
         [HttpPost]
-        public async Task<IActionResult> Create(Discount discount)
+        public IActionResult Create(Discount discount)
         {
             _dataContext.AddDiscount(discount);
             return RedirectToAction("Index");
@@ -37,21 +37,20 @@ namespace Northwind.Controllers
         // this method accepts an argument to delete a blog and redirects to the home page
         public IActionResult DeleteDiscount(int id)
         {
-           _dataContext.DeleteDiscount(_dataContext.Discounts.FirstOrDefault(b => b.DiscountId == id));
+            _dataContext.DeleteDiscount(_dataContext.Discounts.FirstOrDefault(b => b.DiscountId == id));
             return RedirectToAction("Index");
         }
 
 
 
         public IActionResult Edit(int id) => View(_dataContext.Discounts.FirstOrDefault(d => d.DiscountId == id));
-        
+
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Edit(Discount discount)
         {
-            return View();
-            // Edit customer info
-            // _dataContext.EditDiscount(discount);
-            //return RedirectToAction("Index", "Discount");
+            // Edit discount info
+            _dataContext.EditDiscount(discount);
+            return RedirectToAction("Index", "Discount");
         }
 
 
