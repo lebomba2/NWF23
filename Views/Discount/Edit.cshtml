@@ -3,6 +3,7 @@
 <h1>Edit Discount</h1>
 <div asp-validation-summary="All" class="text-danger"></div>
 <form asp-action="Create" method="post">
+      <input type="hidden" name="DiscountId" value="@Model.DiscountId" />
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control" />
