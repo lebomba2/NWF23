@@ -40,24 +40,38 @@ namespace Northwind.Controllers
            _dataContext.DeleteDiscount(_dataContext.Discounts.FirstOrDefault(b => b.DiscountId == id));
             return RedirectToAction("Index");
         }
-     
-     
+
+
+
+        public IActionResult Edit(int id) => View(_dataContext.Discounts.FirstOrDefault(d => d.DiscountId == id));
+
+            
+        //[Authorize(Roles = "northwind-customer"), HttpPost, ValidateAntiForgeryToken]
+        //[HttpPost, ValidateAntiForgeryToken]
+        //public IActionResult Edit(Discount discount)
+        //{
+        //    Edit discountr info
+        //    _dataContext.EditDiscount(Discount);
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+
 
         //TO DO write logic for edit discount button
-        //TO DO add appropriate decorators for the method
-        public async Task<IActionResult> Edit(int id)
-        {
-            //AppUser user = await userManager.FindByIdAsync(id);
-            //if (user != null)
-            //{
-            //    return View(user);
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index");
-            //}
-            return null; //TO DO delete this return statement when logic is written
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Edit(int id)
+        // {
+        //AppUser user = await userManager.FindByIdAsync(id);
+        //if (user != null)
+        //{
+        //    return View(user);
+        //}
+        //else
+        //{
+        //    return RedirectToAction("Index");
+        //}
+        //return null; //TO DO delete this return statement when logic is written
+        //}
 
 
         private void AddErrorsFromResult(IdentityResult result)

@@ -71,10 +71,7 @@ public class DataContext : DbContext
         discountToUpdate.Title = discount.Title;
         discountToUpdate.Code = discount.Code;
         discountToUpdate.StartTime = discount.StartTime;
-        discountToUpdate.EndTime = discount.EndTime;
-
-        
-        SaveChanges()
-            ;
+        discountToUpdate.EndTime = discount.EndTime;        
+        SaveChanges();
     }
 }
