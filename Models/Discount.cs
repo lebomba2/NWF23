@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations.Schema;
 public class Discount
 {
@@ -10,6 +11,6 @@ public class Discount
     public decimal DiscountPercent { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-
-    public Product Product { get; set; }
+    [NotMapped]
+    public SelectList Products { get; set; }
 }

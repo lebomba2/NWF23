@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using System.Linq;
-
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Northwind.Controllers
 {
@@ -30,7 +29,12 @@ namespace Northwind.Controllers
 
         //TO DO add appropriate decorators for the method
         //TO DO add logic for create
-        public ViewResult Create() => View();
+        public ViewResult Create()
+        {
+            var vm = new Discount();
+            vm.Products = new SelectList(_dataContext.Products, nameof(Product.ProductId), nameof(Product.ProductName));
+            return View(vm);
+        }
 
         //TO DO write logic for delete discount button
         //TO DO add appropriate decorators for the method
