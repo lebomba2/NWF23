@@ -1,4 +1,4 @@
-﻿@model Discount
+﻿@model Discount?
 
 <h1>Create Discount</h1>
 <div asp-validation-summary="All" class="text-danger"></div>
@@ -21,11 +21,11 @@
   </div>
    <div class="form-group">
     <label asp-for="StartTime"></label>
-    <input type="date" asp-for="StartTime" class="form-control" />
+    <input value="@DateTime.Now" type="date" asp-for="StartTime" class="form-control" />
   </div>
    <div class="form-group">
     <label asp-for="EndTime"></label>
-    <input type="date" asp-for="EndTime" class="form-control" />
+    <input value="@DateTime.Now" type="date" asp-for="EndTime" class="form-control" />
   </div>
  
      <div class="form-group">

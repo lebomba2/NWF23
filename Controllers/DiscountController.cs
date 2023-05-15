@@ -23,6 +23,15 @@ namespace Northwind.Controllers
         [HttpPost]
         public IActionResult Create(Discount discount)
         {
+            // check start / end dates
+            if (discount.StartTime >= discount.EndTime)
+            {
+                // TODO: Flag error
+                var vm = new Discount();
+                vm.Products = new SelectList(_dataContext.Products, nameof(Product.ProductId), nameof(Product.ProductName));
+                ModelState.AddModelError("", "End time must be later than start time");
+                return View(vm);
+            }
             _dataContext.AddDiscount(discount);
             return RedirectToAction("Index");
         }
