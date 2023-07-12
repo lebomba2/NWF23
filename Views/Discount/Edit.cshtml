@@ -8,9 +8,10 @@
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control" />
     </div>
+    @*make code field disabled for editing*@
     <div class="form-group">
         <label asp-for="Code"></label>
-        <input asp-for="Code" class="form-control" />
+        <input asp-for="Code" class="form-control" disabled />
     </div>
     <div class="form-group">
         <label asp-for="StartTime"></label>

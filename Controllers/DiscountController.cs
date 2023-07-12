@@ -32,6 +32,23 @@ namespace Northwind.Controllers
                 ModelState.AddModelError("", "End time must be later than start time");
                 return View(vm);
             }
+
+            //generate random and unique discount code
+            int code = 0;
+            do
+            {
+                Random rand = new Random();
+                code = rand.Next(0, 9999);
+            } while (_dataContext.Discounts.FirstOrDefault(d => d.Code == code) != null);
+
+            discount.Code = code;
+
+            //ensure decimal value is valid
+            if (discount.DiscountPercent >= 1)
+            {
+                discount.DiscountPercent = .9999m;      
+            }
+
             _dataContext.AddDiscount(discount);
             return RedirectToAction("Index");
         }
